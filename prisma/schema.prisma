@@ -15,6 +15,7 @@ model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   name      String
+  username  String   @unique
   email     String   @unique
   password  String
   posts     Post[]
@@ -24,7 +25,6 @@ model Post {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  title     String
   body      String
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?

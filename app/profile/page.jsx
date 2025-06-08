@@ -1,19 +1,16 @@
-import prisma from "@/lib/prisma";
-import { getSession } from "@/utils/functions";
-import Link from "next/link";
+import { getSession } from "@/lib/sessionToken";
 
 const Page = async () => {
-  const session = await getSession();
+  const { name, email } = await getSession();
+  const user = {
+    name,
+    email,
+  };
 
   return (
     <>
       <h1>Profile</h1>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
-      <ul>
-        <li>
-          <Link href={`/`}>Home</Link>
-        </li>
-      </ul>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </>
   );
 };

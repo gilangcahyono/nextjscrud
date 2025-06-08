@@ -1,25 +1,21 @@
 "use client";
 
-import { login } from "@/actions/login";
 import Link from "next/link";
+import { login } from "@/actions/auth";
+import { SubmitButton } from "@/components/atoms/SubmitButton";
 import { useSearchParams } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
-
-const initialState = {
-  message: "",
-};
+import { useFormState } from "react-dom";
 
 const Page = () => {
-  const [state, formAction] = useFormState(login, initialState);
-  const { pending } = useFormStatus();
+  const [state, formAction] = useFormState(login, { message: "" });
   const params = useSearchParams();
-  const pathname = params.get("redirect");
+  const redirectUrl = params.get("redirect") || "/";
 
   return (
     <>
       <h1>Login</h1>
       <form action={formAction}>
-        <input type="hidden" name="redirectUrl" value={pathname} />
+        <input type="hidden" name="redirectUrl" value={redirectUrl} />
         <div>
           <small>{state?.message}</small>
         </div>
@@ -45,9 +41,7 @@ const Page = () => {
         <br />
 
         <div>
-          <button disabled={pending} type="submit">
-            Login
-          </button>
+          <SubmitButton>Login</SubmitButton>
         </div>
         <div>
           <p>

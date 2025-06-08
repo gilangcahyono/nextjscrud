@@ -1,6 +1,6 @@
 "use client";
 
-import { register } from "@/actions/register";
+import { register } from "@/actions/auth/register";
 import { useFormState, useFormStatus } from "react-dom";
 
 const initialState = {

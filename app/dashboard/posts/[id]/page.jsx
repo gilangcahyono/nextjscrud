@@ -12,15 +12,12 @@ const Page = async ({ params }) => {
     },
   });
 
+  console.log(post);
+
   return (
     <>
       <h1>Post</h1>
       <pre>{JSON.stringify(post, null, 2)}</pre>
-      <ul>
-        <li>
-          <Link href={`/`}>Home</Link>
-        </li>
-      </ul>
     </>
   );
 };
