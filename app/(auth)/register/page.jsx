@@ -1,8 +1,6 @@
 "use client";
 
-import { login } from "@/actions/login";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { register } from "@/actions/register";
 import { useFormState, useFormStatus } from "react-dom";
 
 const initialState = {
@@ -10,18 +8,21 @@ const initialState = {
 };
 
 const Page = () => {
-  const [state, formAction] = useFormState(login, initialState);
+  const [state, formAction] = useFormState(register, initialState);
   const { pending } = useFormStatus();
-  const params = useSearchParams();
-  const pathname = params.get("redirect");
 
   return (
     <>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form action={formAction}>
-        <input type="hidden" name="redirectUrl" value={pathname} />
         <div>
           <small>{state?.message}</small>
+        </div>
+
+        <br />
+
+        <div>
+          <input type="text" name="name" placeholder="Name" required />
         </div>
 
         <br />
@@ -45,14 +46,21 @@ const Page = () => {
         <br />
 
         <div>
-          <button disabled={pending} type="submit">
-            Login
-          </button>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            minLength={3}
+            required
+          />
         </div>
+
+        <br />
+
         <div>
-          <p>
-            Don&apos;t have an account? <Link href="/register">Register</Link>
-          </p>
+          <button disabled={pending} type="submit">
+            Register
+          </button>
         </div>
       </form>
     </>

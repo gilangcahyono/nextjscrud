@@ -1,13 +1,14 @@
 import prisma from "@/lib/prisma";
+import { getSession } from "@/utils/functions";
 import Link from "next/link";
 
 const Page = async () => {
-  const users = await prisma.user.findMany();
+  const session = await getSession();
 
   return (
     <>
-      <h1>Users</h1>
-      <pre>{JSON.stringify(users, null, 2)}</pre>;
+      <h1>Profile</h1>
+      <pre>{JSON.stringify(session, null, 2)}</pre>
       <ul>
         <li>
           <Link href={`/`}>Home</Link>
