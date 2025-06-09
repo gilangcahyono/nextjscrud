@@ -26,9 +26,24 @@ const PostCard = ({ post }) => {
             {getTimeAgo(post.createdAt)} ago
           </p>
         </div>
+        <div className="ml-auto">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-7 text-slate-700"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+        </div>
       </div>
-
-      <p className="text-slate-700 px-3 pt-2 line-clamp-2">{post.body}</p>
+      <p className="text-slate-700 px-3 pt-2">{post.body}</p>
       <div className="pb-2"></div>
     </div>
   );

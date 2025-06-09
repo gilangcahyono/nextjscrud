@@ -1,9 +1,8 @@
-import Navbar from "@/components/organism/Navbar";
 import PostCard from "@/components/molecules/PostCard";
 import prisma from "@/lib/prisma";
 import { getSession } from "@/lib/sessionToken";
-import { getTimeAgo } from "@/utils/getTimeAgo";
-import Link from "next/link";
+import Header from "@/components/molecules/Header";
+import Navbar from "@/components/organism/Navbar";
 
 const Home = async () => {
   const { id: userId } = await getSession();
@@ -23,13 +22,12 @@ const Home = async () => {
   });
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <Navbar />
-      <div className="pt-16"></div>
+    <>
+      <Header />
       {posts.map((post, idx) => (
         <PostCard key={idx} post={post} />
       ))}
-    </div>
+    </>
   );
 };
 
